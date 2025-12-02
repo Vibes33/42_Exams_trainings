@@ -1,22 +1,39 @@
-int calc(int nb)
-{
-	int len = 1;
+#include <stdlib.h>
 
-	
-	if(nb < 0)
-	{
-		nb *= -1;
-		len++;
-	}
-	while(nb > 9)
-	{
-		nb /= 10;
-		len++;
-	}
-	return len;
+char *converter(char *s, int len, long int n) {
+    while (n > 0) {
+        s[len] = '0' + (n%10);
+        n /= 10;
+        len--;
+    }
+    return s;
 }
 
-char	*ft_itoa(int nbr)
-{
-	
+int int_len(long int nb) {
+    int i = 0;
+    if (nb == 0) return 1;
+    if (nb < 0) {
+        i++;
+        nb *= -1;
+    }
+    while (nb > 0) {
+        i++;
+    	nb /= 10;
+    }
+    return i;
+}
+
+char *ft_itoa(int nbr) {
+    long int li = nbr;
+    int len = int_len(li);
+    char *s = (char *)malloc(len + 1);
+    if (!s)
+        return NULL;
+    s[len--] = '\0';
+    if (nbr == 0) s[0] = '0';
+    if (li < 0) {
+        s[0] = '-';
+        li *= -1;
+    }
+    return s = converter(s, len, li);
 }

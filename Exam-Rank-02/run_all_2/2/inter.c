@@ -12,7 +12,7 @@ void inter(char *comp, char *str)
 		i = 0;
 		while(str[i])
 		{
-			c = (unsigned char) comp[j];
+			c = (unsigned char) str[i];
 			if(str[i] == comp[j])
 			{
 				if(!seen[c])
